@@ -37,12 +37,12 @@
 
         <!-- or Use SootUp Dependencies -->
         <dependency>
-            <groupId>org.soot-oss</groupId>
+            <groupId>${sootup.groupid}</groupId>
             <artifactId>sootup.java.sourcecode</artifactId>
             <version>${sootup.version}</version>
         </dependency>
         <dependency>
-            <groupId>org.soot-oss</groupId>
+            <groupId>${sootup.groupid}</groupId>
             <artifactId>sootup.jimple.parser</artifactId>
             <version>${sootup.version}</version>
         </dependency>
