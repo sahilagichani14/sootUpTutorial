@@ -43,23 +43,23 @@ public abstract class BaseSetup {
         // set project as class path location
         JavaProject project = JavaProject.builder(language).addInputLocation(inputLocations.get(0)).build();
         view = project.createView();
-        System.out.println(view.getClasses());
+        System.out.println("View Classes: " + view.getClasses());
         view.configBodyInterceptors( aip -> BytecodeClassLoadingOptions.Default);
         ClassType classType =
                 view.getIdentifierFactory().getClassType("upb.thesis.callgraph.SampleClass");
-        System.out.println(classType);
+        System.out.println("Class Type:" + classType);
 
         JavaSootClass sootClass = view.getClass(classType).get();
-        System.out.println(sootClass);
+        System.out.println("Soot Class: " +sootClass);
 
         MethodSignature methodSignature = view.getIdentifierFactory()
                 .getMethodSignature("generateCallGraph", "upb.thesis.callgraph.SampleClass", "void", Collections.emptyList());
                 //.getMethodSignature(classType, "test", Collections.emptyList());
-        System.out.println(methodSignature);
+        System.out.println("Method Signature: " + methodSignature);
 
         // Create type hierarchy and CHA
         final ViewTypeHierarchy typeHierarchy = new ViewTypeHierarchy(view);
-        System.out.println(typeHierarchy.subclassesOf(classType));
+        //System.out.println(typeHierarchy.subclassesOf(classType));
         CallGraphAlgorithm cha = new ClassHierarchyAnalysisAlgorithm(view);
         // Create CG by initializing CHA with entry method(s)
         CallGraph cg = cha.initialize(Collections.singletonList(methodSignature));
