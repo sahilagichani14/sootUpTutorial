@@ -50,6 +50,7 @@ public abstract class BaseSetup {
         System.out.println("Class Type:" + classType);
 
         JavaSootClass sootClass = view.getClass(classType).get();
+
         System.out.println("Soot Class: " +sootClass);
 
         MethodSignature methodSignature = view.getIdentifierFactory()
