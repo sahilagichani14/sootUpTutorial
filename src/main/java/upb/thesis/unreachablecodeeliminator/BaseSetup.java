@@ -34,14 +34,14 @@ public abstract class BaseSetup {
         System.out.println(view.getClasses());
         view.configBodyInterceptors( aip -> BytecodeClassLoadingOptions.Default);
         ClassType classType =
-                view.getIdentifierFactory().getClassType("upb.thesis.deadcodeeliminator.SampleClass");
+                view.getIdentifierFactory().getClassType("upb.thesis.unreachablecodeeliminator.SampleClass");
         System.out.println(classType);
 
         JavaSootClass sootClass = view.getClass(classType).get();
         System.out.println(sootClass);
 
         MethodSignature methodSignature = view.getIdentifierFactory()
-                .getMethodSignature("makeCollection", "upb.thesis.deadcodeeliminator.SampleClass", "Collection", Collections.emptyList());
+                .getMethodSignature("makeCollection", "upb.thesis.unreachablecodeeliminator.SampleClass", "Collection", Collections.emptyList());
                 //.getMethodSignature(classType, "test", Collections.emptyList());
         System.out.println(methodSignature);
         System.out.println("==========Tranform Methods=======");

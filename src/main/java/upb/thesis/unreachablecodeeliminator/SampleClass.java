@@ -12,7 +12,7 @@ public class SampleClass {
     }
 
     public Collection makeCollection(String s) {
-        if (true) {
+        if (s.equals("list")) {
             return new ArrayList();
         } else {
             return new HashSet();
