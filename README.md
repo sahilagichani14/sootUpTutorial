@@ -10,3 +10,11 @@
     </dependency>
 
 3. Warning:(60, 5)  Provides transitive vulnerable dependency maven:org.eclipse.platform:org.eclipse.core.resources:3.14.0 CVE-2023-4218 5.0 Improper Restriction of XML External Entity Reference vulnerability with Medium severity found  Results powered by Checkmarx(c) 
+
+4. To get latest SootUp jar & add to project:
+   git clone https://github.com/secure-software-engineering/SootUp.git
+   cd SootUp (git bash or cmd)
+   mvn install  -Dmaven.test.skip.exec -Dmaven.test.skip=true
+   OR
+   mvn clean install -DskipTests
+   

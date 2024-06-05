@@ -11,9 +11,12 @@
     <url>http://maven.apache.org</url>
 
     <properties>
+        <!--  <maven.test.skip>true</maven.test.skip>  -->
+        <!--  <tests.skip>true</tests.skip>  -->
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <sootup.groupid>org.soot-oss</sootup.groupid>
-        <sootup.version>1.1.2</sootup.version>
+        <sootup.version>1.2.1-SNAPSHOT</sootup.version>
+        <!--    <sootup.version>1.1.2</sootup.version>  -->
     </properties>
 
     <repositories>
@@ -79,5 +82,4 @@
         <!--    </dependency>-->
 
     </dependencies>
-
 </project>

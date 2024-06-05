@@ -1,0 +1,38 @@
+public class Target extends java.lang.Object
+{
+
+    public void <init>()
+    {
+        Target r0;
+
+        r0 := @this: Target;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        return;
+    }
+
+    public static void main(java.lang.String[])
+    {
+        java.lang.String[] r0;
+
+        r0 := @parameter0: java.lang.String[];
+
+        return;
+    }
+
+    void testEmptySwitchEliminator()
+    {
+        Target r0;
+
+        r0 := @this: Target;
+
+        lookupswitch(0)
+        {
+            default: goto label1;
+        };
+
+     label1:
+        return;
+    }
+}
