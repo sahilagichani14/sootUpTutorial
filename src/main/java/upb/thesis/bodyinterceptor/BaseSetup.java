@@ -11,33 +11,32 @@ import sootup.core.util.ImmutableUtils;
 import sootup.java.bytecode.inputlocation.JavaClassPathAnalysisInputLocation;
 import sootup.java.core.JavaIdentifierFactory;
 import sootup.java.core.JavaSootClass;
+import sootup.java.core.interceptors.ConditionalBranchFolder;
 import sootup.java.core.interceptors.DeadAssignmentEliminator;
 import sootup.java.core.types.JavaClassType;
 import sootup.java.core.views.JavaView;
 import sootup.java.sourcecode.inputlocation.JavaSourcePathAnalysisInputLocation;
 
-import java.util.Collections;
-import java.util.HashSet;
+import java.util.*;
 
-public abstract class BaseSetup {
+public class BaseSetup {
     public void setUp() {
         AnalysisInputLocation inputLocation =
                 new JavaSourcePathAnalysisInputLocation(null,
                         ImmutableUtils.immutableSet("src/main/java/upb/thesis/bodyinterceptor/"),
-                        null,
-                        Collections.singletonList(new DeadAssignmentEliminator()));
+                        null, List.of(new ConditionalBranchFolder()));
 
         JavaView view = new JavaView(inputLocation);
-        view.getClasses().forEach(javaSootClass -> {
-            javaSootClass.getName();
-        });
+//        view.getClasses().forEach(javaSootClass -> {
+//            javaSootClass.getName();
+//        });
 
         JavaClassType classType = JavaIdentifierFactory.getInstance().getClassType("upb.thesis.bodyinterceptor.SampleClass");
         //ClassType classType = view.getIdentifierFactory().getClassType("upb.thesis.bodyinterceptor.SampleClass");
         System.out.println(classType.getClassName());
 
         MethodSignature methodSignature = view.getIdentifierFactory()
-                .getMethodSignature(classType, "testDeadAssignmentEliminator", "String", Collections.emptyList());
+                .getMethodSignature(classType, "conditionalBranchFolderTest2", "void", Collections.emptyList());
         System.out.println(methodSignature.getName());
 
 //        if (!view.getClass(classType).isPresent()) {

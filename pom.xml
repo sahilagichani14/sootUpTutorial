@@ -29,6 +29,18 @@
             <url>https://maven.google.com</url>
         </repository>
     </repositories>
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>9</source>
+                    <target>9</target>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
 
     <dependencies>
         <dependency>
@@ -68,6 +80,11 @@
             <groupId>${sootup.groupid}</groupId>
             <artifactId>sootup.analysis</artifactId>
             <version>${sootup.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.bitbucket.cowwoc</groupId>
+            <artifactId>diff-match-patch</artifactId>
+            <version>1.2</version>
         </dependency>
         <dependency>
             <groupId>${sootup.groupid}</groupId>
