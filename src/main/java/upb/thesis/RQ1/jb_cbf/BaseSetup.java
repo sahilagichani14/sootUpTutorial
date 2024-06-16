@@ -1,4 +1,4 @@
-package upb.thesis.RQ1;
+package upb.thesis.RQ1.jb_cbf;
 
 import sootup.core.inputlocation.AnalysisInputLocation;
 import sootup.core.model.Body;
@@ -8,6 +8,7 @@ import sootup.java.bytecode.inputlocation.JavaClassPathAnalysisInputLocation;
 import sootup.java.core.JavaSootClass;
 import sootup.java.core.JavaSootMethod;
 import sootup.java.core.interceptors.ConditionalBranchFolder;
+import sootup.java.core.interceptors.LocalSplitter;
 import sootup.java.core.views.JavaView;
 
 import java.io.File;
@@ -44,8 +45,11 @@ public class BaseSetup {
                 System.out.println(jsm.getBody());
                 System.out.println("========Transformed Body=========");
                 Body.BodyBuilder builder = Body.builder(jsm.getBody(), Collections.emptySet());
-                new ConditionalBranchFolder().interceptBody(builder, view);
-                System.out.println(builder.getStmtGraph().toString().trim());
+                new LocalSplitter().interceptBody(builder, view);
+                //new CopyPropagator().interceptBody(builder, view);
+                //new ConditionalBranchFolder().interceptBody(builder, view);
+                //System.out.println(builder.getStmtGraph().toString().trim());
+                System.out.println(builder.getStmtGraph().toString());
             }
         }
     }

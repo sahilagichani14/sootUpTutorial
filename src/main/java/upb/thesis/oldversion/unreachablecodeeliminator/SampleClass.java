@@ -1,4 +1,4 @@
-package upb.thesis.unreachablecodeeliminator;
+package upb.thesis.oldversion.unreachablecodeeliminator;
 
 import java.util.ArrayList;
 import java.util.Collection;

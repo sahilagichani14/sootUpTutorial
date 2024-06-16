@@ -1,4 +1,4 @@
-package upb.thesis.RQ1;
+package upb.thesis.RQ1.jb_cbf;
 
 public class SampleClass {
 
