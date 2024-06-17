@@ -1,4 +1,4 @@
-package upb.thesis.localsplitter;
+package upb.thesis.oldversion.localsplitter;
 
 public class LocalSplitter extends BaseSetup {
 

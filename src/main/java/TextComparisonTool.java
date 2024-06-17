@@ -76,14 +76,17 @@ public class TextComparisonTool extends JFrame {
 
             FileInputStream fis1 = null;
             FileInputStream fis2 = null;
-            //fis1 = new FileInputStream("sootOutput/upb.thesis.RQ1.JB_CBF.JB_CBF/void conditionalBranchFolderTest()/jb.cbf.in");
-            //String jimple1 = IOUtils.toString(fis1, "UTF-8");
-            //fis2 = new FileInputStream("sootOutput/upb.thesis.RQ1.JB_CBF.JB_CBF/void conditionalBranchFolderTest()/jb.cbf.out");
-            //String jimple2 = IOUtils.toString(fis2, "UTF-8");
-
-            String jimple1 = "";
-            String jimple2 = "";
-            tool.compareTexts(jimple1, jimple2);
+            try {
+                fis1 = new FileInputStream("sootupRes/jb_ls/in");
+                String jimple1 = IOUtils.toString(fis1, "UTF-8");
+                fis2 = new FileInputStream("sootupRes/jb_ls/out");
+                String jimple2 = IOUtils.toString(fis2, "UTF-8");
+                tool.compareTexts(jimple1, jimple2);
+            } catch (FileNotFoundException e) {
+                throw new RuntimeException(e);
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
         });
     }
 }

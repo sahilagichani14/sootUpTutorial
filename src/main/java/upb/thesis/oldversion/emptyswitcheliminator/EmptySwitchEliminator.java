@@ -1,4 +1,4 @@
-package upb.thesis.emptyswitcheliminator;
+package upb.thesis.oldversion.emptyswitcheliminator;
 
 public class EmptySwitchEliminator extends BaseSetup {
 
