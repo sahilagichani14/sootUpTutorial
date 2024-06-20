@@ -26,8 +26,10 @@ public class BaseSetup {
 
         String classPath = System.getProperty("user.dir") + File.separator + "target" + File.separator + "classes";
         //String pathToBinary = "src/main/java/upb/thesis/latestsootup/example.jar";
-        AnalysisInputLocation inputLocation = new JavaClassPathAnalysisInputLocation(classPath, null,
-                List.of(new ConditionalBranchFolder()));
+//        AnalysisInputLocation inputLocation = new JavaClassPathAnalysisInputLocation(classPath, null,
+//                List.of(new ConditionalBranchFolder()));
+        // if nothing passed then 8 by default BI are applied which are defined in ByteCodeBodyInterceptors
+        AnalysisInputLocation inputLocation = new JavaClassPathAnalysisInputLocation(classPath, null, Collections.emptyList());
         JavaView view = new JavaView(inputLocation);
         Collection<JavaSootClass> viewClasses = view.getClasses();
         System.out.println(viewClasses);
