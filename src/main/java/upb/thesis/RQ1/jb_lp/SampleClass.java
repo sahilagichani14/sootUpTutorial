@@ -1,18 +1,35 @@
-package upb.thesis.RQ1.jb_ls;
+package upb.thesis.RQ1.jb_lp;
 
 public class SampleClass {
-    int global = 10;
+    //int global = 10;
 
     public void tc1() {
         int a;
         if (10 > 20) {
+            int temp = 5;
             a = 10;
         } else {
             a = 20;
+            int temp = a;
         }
         int b = a + 5;
+        int temp;
     }
 
+    public void tc1_() {
+        int a = 0;
+        for (int i=0; i < 5; i++){
+            int temp;
+            a = i;
+        }
+
+        for (int j=0; j < 5; j++){
+            int temp;
+            a = j;
+        }
+    }
+
+    /*
     private void tc2() {
         int a;
         if (10 > 0) {
@@ -139,7 +156,7 @@ public class SampleClass {
         } else {
             b = 5;
         }
-        if (b > 15) {
+        if (b > 15 || a < 5) {
             c = a + b;
         }
         b = b + 5;
@@ -190,11 +207,11 @@ public class SampleClass {
         c = a + b;
     }
 
-    void tc17() {
-        String x = "abc";
-        String y = "bcd";
-        String z = x + y;
-    }
+//    void tc17() {
+//        String x = "abc";
+//        String y = "bcd";
+//        String z = x + y;
+//    }
 
     void tc18() {
         int x = 0;
@@ -227,5 +244,6 @@ public class SampleClass {
             return;
         return;
     }
+     */
 
 }
