@@ -6,6 +6,7 @@ import sootup.core.model.SootClass;
 import sootup.core.model.SootMethod;
 import sootup.core.signatures.MethodSignature;
 import sootup.core.types.ClassType;
+import sootup.core.util.printer.JimplePrinter;
 import sootup.java.bytecode.inputlocation.JavaClassPathAnalysisInputLocation;
 import sootup.java.core.JavaSootClass;
 import sootup.java.core.JavaSootMethod;
@@ -22,7 +23,7 @@ import java.util.List;
 import java.util.Set;
 
 public class BaseSetup {
-    public void setUp() {
+    public void setUp() throws FileNotFoundException {
 
         String classPath = System.getProperty("user.dir") + File.separator + "target" + File.separator + "classes";
         //String pathToBinary = "src/main/java/upb/thesis/latestsootup/example.jar";
@@ -43,7 +44,19 @@ public class BaseSetup {
                 .getMethodSignature("upb.thesis.RQ1.jb_ls.SampleClass", "localSplitterTest", "void", Collections.emptyList());
         System.out.println(methodSignature.getName());
 
-        generateOutputDirs(sootClass, view);
+        JimplePrinter printer = new JimplePrinter(JimplePrinter.Option.LegacyMode);
+        PrintWriter qPrintWriter = new PrintWriter(new StringWriter());
+        printer.printTo(sootClass, qPrintWriter);
+        //System.out.println(qPrintWriter);
+
+        String fileName = "generatedJimple";
+        JimplePrinter printer1 = new JimplePrinter(JimplePrinter.Option.LegacyMode);
+        OutputStream streamOut = new FileOutputStream(fileName);
+        PrintWriter writerOut = new PrintWriter(new OutputStreamWriter(streamOut));
+        printer1.printTo(sootClass, writerOut);
+        writerOut.flush();
+
+        //generateOutputDirs(sootClass, view);
 
         /*
         Set<? extends JavaSootMethod> sootMethods =  sootClass.getMethods();
