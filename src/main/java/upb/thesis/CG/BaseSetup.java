@@ -2,6 +2,7 @@ package upb.thesis.CG;
 
 import sootup.callgraph.CallGraph;
 import sootup.callgraph.ClassHierarchyAnalysisAlgorithm;
+import sootup.callgraph.GraphBasedCallGraph;
 import sootup.callgraph.RapidTypeAnalysisAlgorithm;
 import sootup.core.inputlocation.AnalysisInputLocation;
 import sootup.core.signatures.MethodSignature;
@@ -34,33 +35,33 @@ public class BaseSetup {
         CallGraph chaCG = chaAlgorithm.initialize(Collections.singletonList(methodSignature));
         CallGraph rtaCG = rtaAlgorithm.initialize(Collections.singletonList(methodSignature));
         Set<MethodSignature> chaMethodSignatures = chaCG.getMethodSignatures();
+        // iterate CHA CG using BFS
+
+        for (MethodSignature srcNode : chaMethodSignatures) {
+            String src = srcNode.getDeclClassType().getFullyQualifiedName() + " " + srcNode.getName();
+            System.out.println("------ " + src + " ------");
+            Set<MethodSignature> outNodes = chaCG.callsFrom(srcNode);
+            for (MethodSignature targetNode : outNodes) {
+                String tgt = targetNode.getDeclClassType().getFullyQualifiedName() + " " + targetNode.getName();
+                System.out.println("Edge:  " + src + " --> " + tgt);
+            }
+        }
+
         Set<MethodSignature> rtaMethodSignatures = rtaCG.getMethodSignatures();
         Set<MethodSignature> uniqueMethodSignatures = chaMethodSignatures;
         uniqueMethodSignatures.removeAll(rtaMethodSignatures);
-        List<String> packagenames =new ArrayList<>();
-        for (MethodSignature uniqueMethodSignature : uniqueMethodSignatures) {
-            Set<MethodSignature> callingMethod = chaCG.callsTo(uniqueMethodSignature);
-            for (MethodSignature signature : callingMethod) {
-                ClassType callingMethodsignatureClass = signature.getDeclClassType();
-                String packageName = callingMethodsignatureClass.getPackageName().getName();
-                packagenames.add(packageName);
+        System.out.println("================================================");
+
+        for (MethodSignature srcNode : rtaMethodSignatures) {
+            String src = srcNode.getDeclClassType().getFullyQualifiedName() + " " + srcNode.getName();
+            System.out.println("------ " + src + " ------");
+            Set<MethodSignature> outNodes = rtaCG.callsFrom(srcNode);
+            for (MethodSignature targetNode : outNodes) {
+                String tgt = targetNode.getDeclClassType().getFullyQualifiedName() + " " + targetNode.getName();
+                System.out.println("Edge:  " + src + " --> " + tgt);
             }
         }
-        HashMap< String, Integer> countPackage  = new HashMap<>();
-        for (String packagename : packagenames) {
-            countPackage.putIfAbsent(packagename, 0);
-            countPackage.put(packagename, countPackage.get(packagename) + 1);
-        }
-        System.out.println(countPackage);
-        Set<String> packageList = countPackage.keySet();
-        List<String> myList = new ArrayList<>(packageList);
 
-        // Step 3: Sort the List
-        Collections.sort(myList);
-        System.out.println(countPackage);
-        for (String element : myList) {
-            System.out.println(countPackage.get(element));
-        }
     }
 
 }
